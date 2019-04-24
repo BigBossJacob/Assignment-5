@@ -74,33 +74,36 @@ physics.addBody( basket, "dynamic", {
 basket.isFixedRotation = true
 
 --Point Counter
-points = display.newText( "Points: " .. score, 40, -20, native.systemFont, 15 )
+points = display.newText( "Points: " .. score, 40, -25, native.systemFont, 15 )
 points:setFillColor( 255/255, 255/255, 255/255 )
 
 --Instructional text
 
-prompt = display.newText( "Drag the basket to catch the fruit!" .. score, 160, 0, native.systemFont, 30 )
+prompt = display.newText( "Drag the basket!", 160, 0, native.systemFont, 30 )
+prompt:setFillColor( 255/255, 255/255, 255/255 )
+
+prompt = display.newText( "Catch the fruit!", 160, 30, native.systemFont, 30 )
 prompt:setFillColor( 255/255, 255/255, 255/255 )
 
 --Move the basket by dragging
 local function basketTouch ( event )
-	local self = event.target
-	if ( event.phase == "began" ) then
+    local self = event.target
+    if ( event.phase == "began" ) then
         
- 	
+    
         -- Set touch focus
         display.getCurrentStage():setFocus( self )
         self.isFocus = true
         
         self.markX = self.x
-    	
+        
      
     elseif ( self.isFocus ) then
         if ( event.phase == "moved" ) then
             
- 			
- 			self.x = event.x - event.xStart + self.markX
-      		
+            
+            self.x = event.x - event.xStart + self.markX
+            
         elseif ( event.phase == "ended" or event.phase == "cancelled" ) then
  
             -- Reset touch focus
@@ -135,11 +138,11 @@ math.randomseed = (os.time())
     if ( event.phase == "began" ) then
       
         if event.other.id == "basket" then
-        	score = score + 1
-        	points.text = ("Points: ".. score)
-        	timer.performWithDelay(1, function() 
-        	orange.x = math.random (1,320)
-        	orange.y = -30
+            score = score + 1
+            points.text = ("Points: ".. score)
+            timer.performWithDelay(1, function() 
+            orange.x = math.random (1,320)
+            orange.y = -30
         end
         )
     elseif ( event.phase == "ended" ) then
@@ -155,11 +158,11 @@ math.randomseed = (os.time())
     if ( event.phase == "began" ) then
        
         if event.other.id == "basket" then
-        	score = score + 1
-        	points.text = ("Points: ".. score)
-        	timer.performWithDelay(1, function() 
-        	apple.x = math.random (1,320)
-        	apple.y = -50
+            score = score + 1
+            points.text = ("Points: ".. score)
+            timer.performWithDelay(1, function() 
+            apple.x = math.random (1,320)
+            apple.y = -50
         end
         )
     elseif ( event.phase == "ended" ) then
@@ -173,13 +176,13 @@ local function fruitCollision3( self, event )
 math.randomseed = (os.time())
 
     if ( event.phase == "began" ) then
-   		
+        
         if event.other.id == "basket" then
-        	score = score + 1
-        	points.text = ("Points: ".. score)
-        	timer.performWithDelay(1, function() 
-        	banana.x = math.random (1,320)
-        	banana.y = -70
+            score = score + 1
+            points.text = ("Points: ".. score)
+            timer.performWithDelay(1, function() 
+            banana.x = math.random (1,320)
+            banana.y = -70
         end
         )
     elseif ( event.phase == "ended" ) then
